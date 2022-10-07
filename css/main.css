@@ -5,21 +5,85 @@
     html, body {
       height: 100%;
       overflow: hidden;
-      font-family: Arial,"Microsoft YaHei",sans-serif;
+      font-family: Iter, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
+    /* prealoder */
+    .loader {
+      background: none repeat scroll 0 0 #ffffff;
+      bottom: 0;
+      height: 100%;
+      left: 0;
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 100%;
+      z-index: 9999; 
+    }
+    .loader_inner {
+      background-image: url("../img/preloader.gif");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-color: #fff;
+      height: 85px;
+      width: 85px;
+      margin-top: -50px;
+      margin-left: -50px;
+      left: 50%;
+      top: 50%;
+      position: absolute; }
     .container, .sections, .section {
       position: relative;
       height: 100%;
       text-align: center;
       color: #fff;
     }
+    /* logo */
+    .logo_container {
+      position: absolute;
+      color: #c1c1c1;
+      left: 3%;
+      top: 3%;
+      font-size: 22px;
+    }
+    /* social icon */
+    .social_wrap {
+      float: right;
+      position: relative;
+      top: 3%;
+      right: 3%;
+    }
+    .social_wrap ul {
+      text-decoration: none;
+    }
+    .social_wrap ul li {
+      display: inline-block;
+    }
+    .social_wrap a {
+      font-size: 22px;
+      padding: 0 3px;
+      color: #4a4a4a;
+      transition: all 0.3s ease;
+    }
+    .social_wrap a:hover {
+      color: #c1c1c1;
+    }
+    /* section */
     .section h1 {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: 40px;
+      transition: all .3s ease;
+    }
+    .section p {
+      position: absolute;
+      top: 57%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 19px;
       transition: all .3s ease;
     }
     .section:first-child h1 {
@@ -51,3 +115,30 @@
         transform: translateX(-50%);
       }
     }
+/* footer */
+footer.main_footer {
+  position: absolute;
+  background: #4a4a4a;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+}
+.copy_right {
+  position: relative;
+  padding: 5px 0;
+
+}
+.copy_right span {
+  padding: 0px 0px 0px 20px;
+}
+/*footer.main_footer a {
+  color: #fff;
+}
+footer.social_wrap {
+  position: absolute;
+
+}
+footer.social_wrap ul li {
+  
+}*/
