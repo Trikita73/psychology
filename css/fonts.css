@@ -3,3 +3,8 @@
   font-style: normal;
   font-weight: 300;
   src: url("../fonts/Inter/Inter-Light.ttf") format("truetype"); }
+@font-face {
+  font-family: "Condensed";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/Condensed/RobotoCondensed-Regular.ttf") format("truetype"); }
