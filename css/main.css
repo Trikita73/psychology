@@ -33,7 +33,7 @@ html, body {
   left: 50%;
   top: 50%;
   position: absolute; }
-.container, .sections, .section {
+.container_wrap, .sections, .section {
   position: relative;
   height: 100%;
   text-align: center;
@@ -83,6 +83,7 @@ header.header_top {
   position: absolute;
   top: 12%;
   left: 50%;
+  margin: 0;
   transform: translate(-50%, -50%);
   font-size: 30px;
   transition: all .3s ease;
@@ -97,13 +98,14 @@ header.header_top {
 }
 .section p::after {
   content: "";
-  width: 150px;
+  width: 250px;
   height: 1px;
   position: absolute;
   left: 50%;
-  margin-left: -75px;
-  margin-top: 40px;
-  background: #30362c;
+  margin-left: -122px;
+  margin-top: 46px;
+  background: #4a4a4a;
+  opacity: .75;
 }
 .section:first-child h1 {
   animation: first-show .3s;

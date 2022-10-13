@@ -10,8 +10,11 @@
 	.main_section p {
 		top: 55%!important;
 	}
-	.section {
-		top: 0%!important;
+	.section_media h1 {
+		top: 9%!important;
+	}
+	.section_media p {
+		top: 13%!important;
 	}
 }
 
@@ -20,6 +23,12 @@
 	.main_section p {
 		top: 53%!important;
 	}
+	/*.section_media h1 {
+		top: 9%!important;
+	}
+	.section_media p {
+		top: 13%!important;
+	}*/
 }
 
 /* Extra Small Devices, Phones */
