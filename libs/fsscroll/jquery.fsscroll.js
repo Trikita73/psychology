@@ -1,7 +1,7 @@
 (function($) {
   'use strict';
 
-  /**  返回浏览器支持的动画css前缀  */
+  /**  Возвращает поддерживаемые браузером префиксы анимации css  */
   var _prefix = (function(domNode) {
     var prefixs = ['webkit', 'Moz', 'o', 'ms'],
         props;
@@ -15,32 +15,32 @@
     return false;
   })(document.createElement('div'));
 
-  /** 默认配置参数 */
+  /** Параметры конфигурации по умолчанию */
   var DEFAULT = {
-    /** dom结构类名 */
+    /** имя класса структуры dom */
     selectors: {
       sections: '.sections',
       section: '.section',
       page: '.page',
       active: '.active'
     },
-    /** 当前页索引 */
+    /** индекс текущей страницы */
     index: 0,
-    /** 动画曲线 */
+    /** кривая анимации */
     timing: 'ease',
-    /** 动画时间 */
+    /** время анимации */
     duration: 500,
-    /** 是否循环播放 */
+    /** Зацикливаться ли */
     loop: false,
-    /** 是否显示分页dot */
+    /** Показывать ли точки нумерации страниц */
     pagination: true,
-    /** 是否支持键盘操作 */
+    /** Поддерживать ли работу с клавиатурой */
     keyboard: false,
-    /** 滑动方向 */
+    /** проведите направление */
     direction: 'vertical',
-    /** 滑动开始的事件 */
+    /** проведите стартовое событие */
     beforeScroll: null,
-    /** 滑动结束后的事件 */
+    /** Событие после окончания свайпа */
     afterScroll: null
   };
 
@@ -51,7 +51,7 @@
   }
 
   FsScroll.prototype = {
-    /** 初始化属性，事件入口 */
+    /** Инициализировать свойства, запись события */
     init: function() {
       this.selectors = this.options.selectors;
       this.sections = this.element.find(this.selectors.sections);
@@ -74,12 +74,12 @@
       this._initEvent();
     },
 
-    /** 获取滑动页面数量 */
+    /** Получить количество скользящих страниц */
     pagesCount: function() {
       return this.section.length;
     },
 
-    /** 往前翻一页 */
+    /** перевернуть на одну страницу вперед */
     prev: function() {
       if(this.index) {
         this.index--;
@@ -89,7 +89,7 @@
       this._scrollPage();
     },
 
-    /** 往后翻一页 */
+    /** вернуться на одну страницу назад */
     next: function() {
       if(this.index === this.pagesCount - 1) {
         this.index = 0;
@@ -100,13 +100,13 @@
     },
 
     /**
-     * 获取每次滑动的距离
+     * Получить расстояние
      */
     _getScrollLength: function() {
       return this.isVertical ? this.element.height() : this.element.width();
     },
 
-    /** 为了正确的计算出每页的position，父亲容器要加上相对定位 */
+    /** Чтобы правильно рассчитать позицию каждой страницы, нужно добавить родительский контейнер с относительным позиционированием */
     _addPosition: function() {
       var position = this.sections.css('position');
       if(!position || position !== 'relative') {
@@ -114,7 +114,7 @@
       }
     },
 
-    /** 初始化水平滑动的布局 */
+    /** Инициализировать горизонтальное раздвижное расположение */
     _initLayout: function() {
       if(!this.isVertical) {
         var width = this.pagesCount * 100 + '%',
@@ -128,7 +128,7 @@
       }
     },
 
-    /** 初始化分页 */
+    /** Инициализировать пейджинг */
     _initPagination: function() {
       var pageCls = this.selectors.page.substring(1),
           pageHtml = '<ul class=' + pageCls + '>';
@@ -151,12 +151,12 @@
       }
     },
 
-    /** 初始化事件 */
+    /** событие инициализации */
     _initEvent: function() {
       var self = this;
 
-      /** 绑定鼠标滚轮事件
-       * firefox 滚轮事件为 DOMMouseScroll
+      /** Привязать событие колесика мыши
+       * firefox Событие колеса прокрутки DOMMouseScroll
        */
       self.element.on('mousewheel DOMMouseScroll', function(e) {
         e.preventDefault();
@@ -170,7 +170,7 @@
         }
       });
 
-      /** 绑定键盘事件 */
+      /** Привязать события клавиатуры */
       if(self.options.keyboard) {
         $(document).on('keyup', function(e) {
           var keyCode = e.keyCode;
@@ -183,14 +183,14 @@
       }
 
       /**
-       * 窗口resize事件
-       * 获取当前的页面的offset，相对于视口的偏移，在偏移超过一半才滑动
+       * событие изменения размера окна
+       * Получить смещение текущей страницы относительно смещения окна просмотра и скользить только тогда, когда смещение превышает половину
        */
       var timer = null;
       $(window).on('resize', function(){
         clearTimeout(timer);
         timer = setTimeout(function() {
-          // 处在第一页的偏移量在缩放过程中始终是0，不影响
+          // Смещение на первой странице всегда равно 0 во время масштабирования и не влияет на
           if(!self.index) {
             return;
           }
@@ -209,13 +209,13 @@
         }, 200)
       });
 
-      /** 分页点击事件 */
+      /** событие клика по пагинации */
       self.element.on('click', this.selectors.page + ' li', function(e) {
         self.index = $(this).index();
         self._scrollPage();
       });
 
-      /** 过渡动画结束后触发 */
+      /** Запускается после окончания анимации перехода */
       if(_prefix) {
         self.sections.on('transitionend webkitTransitionEnd oTransitionEnd otransitionend', function() {
           self.canScroll = true;
@@ -224,7 +224,7 @@
       }
     },
 
-    /** 滑动到当前页面 */
+    /** Пролистнуть на текущую страницу */
     _scrollPage: function(init) {
       var self = this,
           dest = self.section.eq(self.index).position();
@@ -239,7 +239,7 @@
         self.sections.css(_prefix + 'transition', 'all ' + self.options.duration + 'ms ' + self.options.timing);
         self.sections.css(_prefix + 'transform', translate);
       }else {
-        // 不支持css3过渡动画的用jquery的动画函数兼容
+        // Совместимость с функциями анимации jquery, которые не поддерживают анимацию перехода CSS3.
         var animateCss = self.isVertical ? {top: -dest.top} : {left: -dest.left};
         self.sections.animate(animateCss, self.options.duration, function() {
           self.canScroll = true;
@@ -252,7 +252,7 @@
       }
     },
 
-    /** 滑动开始处理 */
+    /** Проведите, чтобы начать обработку */
     _beforeScroll: function() {
       var self = this;
       if(self.options.beforeScroll && $.type(self.options.beforeScroll) === 'function') {
@@ -260,7 +260,7 @@
       }
     },
 
-    /** 滑动结束处理 */
+    /** Проведите, чтобы завершить обработку */
     _afterScroll: function() {
       var self = this;
       if(self.options.afterScroll && $.type(self.options.afterScroll) === 'function') {
@@ -270,7 +270,7 @@
   }
 
   /** 
-   * 绑定插件的jquery原型对象 
+   * Объект-прототип jQuery для привязки плагинов
    */
   $.fn.fsScroll = function(options) {
     return this.each(function() {
