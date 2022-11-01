@@ -2,7 +2,12 @@
 
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px) {
-
+	.descr_img {
+		top: 41%!important;
+	}
+	.next_section {
+		height: 80px!important;
+	}
 }
 
 /* Medium Devices, Desktops */
@@ -15,6 +20,35 @@
 	}
 	.section_media p {
 		top: 13%!important;
+	}
+	.descr_section {
+		top: 19%!important;
+	}
+	.descr_section p::after {
+		width: 700px!important;
+		margin-left: -350px!important;
+	}
+	.descr_img {
+		top: 30%!important;
+	}
+	.descr_img img {
+		width: 350px!important;
+		height: 400px!important;
+		margin: 0 2px 2px 0!important;
+	}
+	.img_wrap_cont {
+		left: 2px!important;
+		width: 350px!important;
+		height: 350px!important;
+	}
+	.img_wrap_cont h4 {
+		margin-top: 90px!important;
+	}
+	.img_wrap_cont p {
+		margin-top: 150px!important;
+	}
+	.next_section {
+		height: 100px!important;
 	}
 }
 
